@@ -1,0 +1,14 @@
+{
+  "name": "breath-cut",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5176",
+    "build": "node scripts/prepare-core.mjs && vite build",
+    "test": "node --test tests/*.test.mjs",
+    "preview": "vite preview --host 127.0.0.1 --port 5176"
+  },
+  "dependencies": { "@ffmpeg/ffmpeg": "0.12.15", "@ffmpeg/core": "0.12.10" },
+  "devDependencies": { "vite": "7.3.7" }
+}

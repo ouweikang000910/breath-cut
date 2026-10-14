@@ -1,0 +1,8 @@
+node_modules/
+dist/
+public/engine/
+.sites-runtime/
+test-results/
+.DS_Store
+.env
+.env.*
