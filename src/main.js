@@ -1,6 +1,7 @@
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { analyze, PRESETS, selectedCuts, removedDuration, editedTime, cutPCM, videoFilter, clock } from './audio.mjs';
 import './style.css';
+import './neon.css';
 
 const icons = {
   wave: '<path d="M3 10v4m4-7v10m5-14v18m5-14v10m4-7v4"/>',
@@ -314,9 +315,9 @@ function drawWave() {
   const width = parent.clientWidth; const height = parent.clientHeight;
   canvas.width = width * dpr; canvas.height = height * dpr;
   const ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr); ctx.clearRect(0, 0, width, height);
-  ctx.strokeStyle = '#e6ebf3'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, height / 2); ctx.lineTo(width, height / 2); ctx.stroke();
+  ctx.strokeStyle = '#4b3942'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, height / 2); ctx.lineTo(width, height / 2); ctx.stroke();
   if (!state.envelope.length || !state.duration) return;
-  for (const cut of selected()) { ctx.fillStyle = '#fff0e4'; ctx.fillRect(cut.start / state.duration * width, 0, (cut.end - cut.start) / state.duration * width, height); }
+  for (const cut of selected()) { ctx.fillStyle = '#592438'; ctx.fillRect(cut.start / state.duration * width, 0, (cut.end - cut.start) / state.duration * width, height); }
   const bars = Math.floor(width / 4);
   const maxRms = Math.max(0.03, ...state.envelope.map(item => item.rms));
   const active = selected();
@@ -324,7 +325,7 @@ function drawWave() {
     const from = Math.floor(i / bars * state.envelope.length); const to = Math.max(from + 1, Math.floor((i + 1) / bars * state.envelope.length));
     let rms = 0; for (let j = from; j < to; j++) rms = Math.max(rms, state.envelope[j]?.rms || 0);
     const time = i / bars * state.duration;
-    ctx.fillStyle = active.some(cut => time >= cut.start && time < cut.end) ? '#ebaa78' : '#5487ed';
+    ctx.fillStyle = active.some(cut => time >= cut.start && time < cut.end) ? '#a78e9b' : '#ff435f';
     const barHeight = Math.max(3, Math.sqrt(rms / maxRms) * (height - 16));
     ctx.fillRect(i * 4 + 1, (height - barHeight) / 2, 2, barHeight);
   }
